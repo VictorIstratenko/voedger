@@ -21,7 +21,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        ref: ${{ github.base_ref }}
+        ref: ${{ github.head_ref }}
         fetch-depth: 0      
 
     - name: Cache Go - Modules
