@@ -1,0 +1,45 @@
+name: CI - golang
+
+on:
+  push:
+    paths:
+      - 'pkg/**'
+  pull_request_target:
+    paths:
+      - 'pkg/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 'stable'
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.base_ref }}
+        fetch-depth: 0      
+
+    - name: Cache Go - Modules
+      uses: actions/cache@v3
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    - name: CI
+      uses: untillpro/ci-action@master
+      with:
+        ignore: ${{ inputs.ignore_copyright }}
+        test-folder: ${{ inputs.test_folder }}
+        organization: 'untillpro,heeus'
+        token: ${{ secrets.reporeading_token }}
+        codecov-token: ${{ secrets.codecov_token }}
+        short-test: ${{ inputs.short_test == 'true' }}
+        run-mod-tidy: false
+
