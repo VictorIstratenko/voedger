@@ -4,17 +4,13 @@ on:
   push:
     paths:
       - 'pkg/**'
-  pull_request:
-    paths:
-      - 'pkg/**'
   pull_request_target:
     paths:
       - 'pkg/**'
 
 jobs:
   call-workflow-ci-pkg:
-    if: github.event_name != 'pull_request_target'
-    uses: untillpro/ci-action/.github/workflows/ci_reuse_go.yml@master
+    uses: untillpro/ci-action/.github/workflows/ci_reuse_go_pr.yml@master
     with: 
       ref: ${{ github.event.pull_request.head.ref }}
       fetch-depth: 0      
@@ -27,9 +23,8 @@ jobs:
       codecov_token: ${{ secrets.CODECOV_TOKEN }}
       personal_token: ${{ secrets.PERSONAL_TOKEN }}
   call-workflow-ci-cmd:
-    if: github.event_name != 'pull_request_target'
     needs: call-workflow-ci-pkg
-    uses: untillpro/ci-action/.github/workflows/ci_reuse_go.yml@master
+    uses: untillpro/ci-action/.github/workflows/ci_reuse_go_pr.yml@master
     with: 
       ref: ${{ github.event.pull_request.head.ref }}
       fetch-depth: 0      
