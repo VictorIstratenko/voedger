@@ -22,6 +22,7 @@ jobs:
       personal_token: ${{ secrets.PERSONAL_TOKEN }}
   auto-merge-pr:
     needs: call-workflow-ci-cmd
+    if: github.event_name == 'pull_request_target'
     uses: voedger/voedger/.github/workflows/merge.yml@main
     secrets:
       personaltoken: ${{ secrets.REPOREADING_TOKEN }}

@@ -12,8 +12,6 @@ jobs:
   call-workflow-ci-pkg:
     uses: untillpro/ci-action/.github/workflows/ci_reuse_go_pr.yml@master
     with: 
-      ref: ${{ github.event.pull_request.head.ref }}
-      fetch-depth: 0      
       test_folder: 'pkg'
       ignore_copyright: 'pkg/apps/sys.monitor/site.main'
       ignore_bp3: 'true'
@@ -26,8 +24,6 @@ jobs:
     needs: call-workflow-ci-pkg
     uses: untillpro/ci-action/.github/workflows/ci_reuse_go_pr.yml@master
     with: 
-      ref: ${{ github.event.pull_request.head.ref }}
-      fetch-depth: 0      
       test_folder: 'cmd'
       ignore_copyright: 'pkg/apps/sys.monitor/site.main'
       short_test: 'true'
