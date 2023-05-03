@@ -16,7 +16,7 @@ type appDef struct {
 	defs    map[QName]*def
 }
 
-func newAppDef() *appDef111 {
+func newAppDef() *appDef1112 {
 	app := appDef{
 		defs: make(map[QName]*def),
 	}
