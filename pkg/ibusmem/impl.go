@@ -24,7 +24,7 @@ type bus struct {
 	requestContextsPool        chan *requestContextType
 }
 
-type requestContextType struct {
+type requestContextType2 struct {
 	mu                    sync.Mutex
 	refCount              int
 	responseChannel       responseChannelType
