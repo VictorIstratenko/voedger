@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-workflow-ci-cmd:
-    uses: untillpro/ci-action/.github/workflows/ci_reuse_go.yml@master
+    uses: untillpro/ci-action/.github/workflows/ci_reuse_go_pr.yml@master
     with: 
       test_folder: 'cmd'
       ignore_copyright: 'pkg/apps/sys.monitor/site.main'
